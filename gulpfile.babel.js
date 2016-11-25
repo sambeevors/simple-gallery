@@ -5,10 +5,13 @@ import uglify       from 'gulp-uglify';
 import rename       from 'gulp-rename';
 import sass         from 'gulp-sass';
 import uglifycss    from 'gulp-uglifycss';
+import imagemin     from 'gulp-imagemin';
 
 gulp.task('default', () => {
+    gulp.start('sass', 'js', 'img');
 	gulp.watch('src/scss/**/*.scss', ['sass']);
     gulp.watch('src/js/**/*.js', ['js']);
+    gulp.watch('src/img/**/*', ['img']);
 });
 
 gulp.task('js', () => {
@@ -31,4 +34,10 @@ gulp.task('sass', () => {
         .pipe(uglifycss())
 		.pipe(rename('simpleGallery.min.css'))
         .pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('img', () => {
+    return gulp.src('src/img/**/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('dist/img'));
 });
