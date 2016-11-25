@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Simple Gallery</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="dist/css/simpleGallery.min.css">
+    </head>
+    <body>
+        <div class="js-gallery-frame simple-gallery">
+            <div class="js-gallery-buttons">
+                <button class="js-gallery-left simple-gallery__navigation simple-gallery__navigation--left">
+                    <i class="material-icons">&#xE5CB;</i>
+                </button>
+                <button class="js-gallery-right simple-gallery__navigation simple-gallery__navigation--right">
+                    <i class="material-icons">&#xE5CC;</i>
+                </button>
+            </div>
+            <div class="js-gallery simple-gallery__images"><!-- Images are inserted here --></div>
+        </div>
+        <script src="dist/js/simpleGallery.js"></script>
+        <script>
+            simpleGallery.init({
+                images: [
+                    {
+                        url: 'dist/img/new-york.jpg',
+                        alt: 'Photograph of New York City',
+                        desc: 'New York City, NY'
+                    },
+                    {
+                        url: 'dist/img/san-diego.jpg',
+                        alt: 'Photograph of San Diego',
+                        desc: 'San Diego, CA'
+                    },
+                    {
+                        url: 'dist/img/washington.jpg',
+                        alt: 'Photograph of Washington',
+                        desc: 'Washington, DC'
+                    }
+                ],
+                settings: {
+                    speed: 2500
+                }
+            });
+        </script>
+    </body>
+</html>

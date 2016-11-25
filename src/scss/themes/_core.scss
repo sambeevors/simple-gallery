@@ -1,0 +1,92 @@
+.simple-gallery {
+    background: #000;
+    width: 1080px;
+    margin: calc(27.5px + 1vw) auto 0;
+    position: relative;
+    max-width: calc(100% - 55px - 2vw);
+    
+    &__error {
+        padding: 20px;
+        font-family: monospace;
+        color: #f00;
+        background: #980000;
+        display: block;
+        width: 100%;
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    &__navigation {
+        background-color: black;
+        color: #fff;
+        border: 0;
+        padding: 0;
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        top: 50%;
+        transition: .3s ease-in-out;
+        z-index: 1;
+        outline: none !important;
+        
+        i {
+            vertical-align: middle;
+            font-size: 34px;
+        }
+        
+        &--left {
+            left: 0;
+            transform: translate(-50%, -50%);
+        }
+        
+        &--right {
+            right: 0;
+            transform: translate(50%, -50%);
+        }
+    }
+    
+    &__images {
+        width: 100%;
+        padding-bottom: 66.666%;
+        color: black;
+        overflow: hidden;
+        position: relative;
+
+        &__image {
+            position: absolute;
+            display: block;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+        }
+        
+        &__container {
+            transition: opacity .5s ease-in-out;
+            
+            &.hide {
+                opacity: 0;
+                pointer-events: none;
+            }
+            
+            span {
+                content: data(data-desc);
+                display: block;
+                position: absolute;
+                width: 100%;
+                left: 0;
+                bottom: 0;
+                background: black;
+                color: #fff;
+                font-family: Arial, sans-serif;
+                padding: 10px;
+                font-size: 16px;
+                text-align: center;
+                line-height: 1.5;
+                font-size: 22px;
+                letter-spacing: 1px;
+            }
+        }
+    }
+}
