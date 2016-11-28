@@ -1,12 +1,12 @@
 const simpleGallery = (() => {
 	let autoplay;
 	let imageCount;
-    let currentImage;
+	let currentImage;
 	let currentSlide = 1;
 	let userControl = true;
 	let renderedImage = [];
-    const galleryFrame = document.querySelector('.js-gallery-frame'); // The container for all the markup
-	const gallery = document.querySelector('.js-gallery'); // Where the images are appended to
+	const galleryFrame = document.querySelector('.js-gallery-frame');// The container for all the markup
+	const gallery = document.querySelector('.js-gallery');// Where the images are appended to
 
 	// Initialises the app
 	const init = config => {
@@ -21,10 +21,10 @@ const simpleGallery = (() => {
 				break;
 			// If images aren't set, fail
 			default:
-                let errorMessage = document.createElement('span');
-                errorMessage.textContent = 'ERROR: No images passed.';
-                errorMessage.classList.add('simple-gallery__error');
-                galleryFrame.appendChild(errorMessage);
+				let errorMessage = document.createElement('span');
+				errorMessage.textContent = 'ERROR: No images passed.';
+				errorMessage.classList.add('simple-gallery__error');
+				galleryFrame.appendChild(errorMessage);
 				return;
 		}
 
@@ -37,10 +37,10 @@ const simpleGallery = (() => {
 		// Set autoplay if it is necessary (default true)
 		autoplay = (typeof config.settings !== 'undefined' && typeof config.settings.autoplay !== 'undefined' ? config.settings.autoplay : true);
 	};
-    
-    // Constructor function for user settings
+
+	// Constructor function for user settings
 	function Settings () {
-        // Default settings
+		// Default settings
 		this.speed = 5000,
 		this.arrows = true,
 		this.autoplay = true;
@@ -107,61 +107,60 @@ const simpleGallery = (() => {
 
 		// Sets all the images into the gallery
 		images.forEach(_setImages);
-        // Starts the gallery once it's been created
+		// Starts the gallery once it's been created
 		_startGallery(settings);
 	};
-    
+
     // Constructor function for creating new slides in the gallery
-	function ImageMarkup () {
-		this.imgId; // Identifier used for each image
-		this.imgSrc; // Source of the image to show
-		this.imgAlt; // Alt text for the image
-		this.imgDesc; // Description of the image (optional)
-        // Check if image with this ID already exists
-		this.imgExists = () => {
-			if (document.querySelector(`.js-slide-${this.imgId}`)) {
-				return true;
-			} else {
-				return false;
-			}
-		};
-		this.renderImg = () => {
-			// Ensures the element doesn't already exists before adding it
-			if (!this.imgExists()) {
-                // Create a new image with appropriate markup
-				let imgContainer = document.createElement('div');
-				imgContainer.classList.add(
-					`js-slide-${this.imgId}`,
-					`js-gallery-image`,
-					`simple-gallery__images__container`
-				);
+    function ImageMarkup () {
+    	this.imgId; // Identifier used for each image
+    	this.imgSrc; // Source of the image to show
+    	this.imgAlt; // Alt text for the image
+    	this.imgDesc; // Description of the image (optional)
+    	// Check if image with this ID already exists
+    	this.imgExists = () => {
+    		if (document.querySelector(`.js-slide-${this.imgId}`)) {
+    			return true;
+    		}
+    		return false;
+    	};
+    	this.renderImg = () => {
+    		// Ensures the element doesn't already exists before adding it
+    		if (!this.imgExists()) {
+    			// Create a new image with appropriate markup
+    			let imgContainer = document.createElement('div');
+    			imgContainer.classList.add(
+    				`js-slide-${this.imgId}`,
+    				`js-gallery-image`,
+    				`simple-gallery__images__container`
+    			);
 
-				let img = document.createElement('img');
-				img.classList.add(
-					`js-image-${this.imgId}`,
-					`simple-gallery__images__image`
-				);
-				img.src = this.imgSrc;
-				img.alt = this.imgAlt;
-				imgContainer.appendChild(img);
+    			let img = document.createElement('img');
+    			img.classList.add(
+    				`js-image-${this.imgId}`,
+    				`simple-gallery__images__image`
+    			);
+    			img.src = this.imgSrc;
+    			img.alt = this.imgAlt;
+    			imgContainer.appendChild(img);
 
-                // If a custom description has been set, add it to the slide
-				if (this.imgDesc !== undefined) {
-					let span = document.createElement('span');
-					span.textContent = this.imgDesc;
-					imgContainer.appendChild(span);
-				}
-                // Adds the image to an array of rendered images
-				renderedImage.push(imgContainer);
-                // Renders the image
-				gallery.appendChild(imgContainer);
-			}
-		};
-        // Identifying class for this image (based on it's ID)
-		this.imgIdentifyingClass = () => {
-			return `.js-image-${this.imgId}`;
-		};
-	}
+    			// If a custom description has been set, add it to the slide
+    			if (this.imgDesc !== undefined) {
+    				let span = document.createElement('span');
+    				span.textContent = this.imgDesc;
+    				imgContainer.appendChild(span);
+    			}
+    			// Adds the image to an array of rendered images
+    			renderedImage.push(imgContainer);
+    			// Renders the image
+    			gallery.appendChild(imgContainer);
+    		}
+    	};
+    	// Identifying class for this image (based on it's ID)
+    	this.imgIdentifyingClass = () => {
+    		return `.js-image-${this.imgId}`;
+    	};
+    }
 
 	// Inserts images into the gallery and resizes them appropriately 
 	const _setImages = (image, index, array) => {
@@ -232,15 +231,15 @@ const simpleGallery = (() => {
 		}
 
 		for (let i = 0; i < imageCount; i++) {
-            // Hides all the images
+			// Hides all the images
 			renderedImage[i].classList.add('hide');
 		}
 
-        // Shows the new image
-        currentImage = document.querySelector(`.js-slide-${currentSlide}`);
+		// Shows the new image
+		currentImage = document.querySelector(`.js-slide-${currentSlide}`);
 		currentImage.classList.remove('hide');
 	};
-    
+
 	// Allows the app to be initialized
-	return { init };
+	return { init};
 })();
