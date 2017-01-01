@@ -1,3 +1,5 @@
+'use strict';
+
 // Load dependencies
 import gulp from 'gulp';
 import babel from 'gulp-babel';
