@@ -241,5 +241,5 @@ const simpleGallery = (() => {
   }
 
   // Allows the app to be initialized
-  return { init}
+  return { init }
 })()

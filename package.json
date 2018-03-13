@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "A vanilla, es2015 javascript plugin for simple, lightweight and customisable image carousels",
   "main": "index.html",
+  "scripts": {
+    "build": "npm install && gulp build"
+  },
   "author": "Sam Beevors",
   "license": "MIT",
   "dependencies": {
